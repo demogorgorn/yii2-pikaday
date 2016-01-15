@@ -12,7 +12,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 
-class Pickadate extends \yii\widgets\InputWidget
+class Pikaday extends \yii\widgets\InputWidget
 {
     public $options = [];
     
