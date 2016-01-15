@@ -14,7 +14,7 @@ class PikadayAsset extends AssetBundle
     public $css = ['css/pikaday.css'];
     public $js = ['pikaday.js','plugins/pikaday.jquery.js'];
     public $depends = [
-        'app\assets\MomentAsset',
+        'demogorgorn\pikaday\MomentAsset',
     ];
 
 
