@@ -62,6 +62,7 @@ class Pickadate extends \yii\widgets\InputWidget
 
         if (!isset($this->clientOptions['field'])) {
             $this->clientOptions['field'] = (!is_null($this->field)) ? $this->field : $this->options['id']; 
+            $this->clientOptions['field'] = "document.getElementById('" . $this->clientOptions['field'] . "')";
         }
 
         if ($this->varName == null)  {
