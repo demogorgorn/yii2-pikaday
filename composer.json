@@ -1,0 +1,26 @@
+{
+    "name": "demogorgorn/yii2-pikaday",
+    "description": "Yii2 wrapper for the mobile-friendly, responsive, and lightweight jQuery date & time input picker.",
+    "keywords": ["yii2", "extension", "widget", "datepicker", "pikaday", "moment"],
+    "homepage": "https://github.com/demogorgorn/yii2-pikaday",
+    "type": "yii2-extension",
+    "license": "BSD 3-Clause",
+    "authors": [
+        {
+            "name": "Oleg Martemjanov",
+            "email": "demogorgorn@gmail.com",
+            "homepage": "http://www.foreign.by/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "*",
+        "bower-asset/pikaday": "*",
+        "bower-asset/moment": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "demogorgorn\\pikaday\\": ""
+        }
+    }
+}
