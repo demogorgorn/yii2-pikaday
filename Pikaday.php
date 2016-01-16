@@ -20,10 +20,6 @@ class Pikaday extends \yii\widgets\InputWidget
 
     public $varName = null;
 
-    // bind the datepicker to a form field
-    // if not set will be used options['id']
-    public $field = null;
-
     /**
      * Initializes the widget
      */
@@ -60,18 +56,12 @@ class Pikaday extends \yii\widgets\InputWidget
         $view = $this->getView();
         PikadayAsset::register($view);
 
-        if (!isset($this->clientOptions['field'])) {
-            $this->clientOptions['field'] = (!is_null($this->field)) ? $this->field : $this->options['id']; 
-            $this->clientOptions['field'] = "document.getElementById('" . $this->clientOptions['field'] . "')";
-        }
-
-        if ($this->varName == null)  {
-            $this->varName = 'picker_' + $this->options['id'];
-        }
-
         $options= Json::encode($this->clientOptions, JSON_NUMERIC_CHECK);
 
-        $js = "var {$this->varName} = new Pikaday({$options})";
+        $js = "$('#{$this->options['id']}').pikaday({$options});";
+
+        if ($this->varName != null)
+            $js = $this->varName . ' = ' . $js;
         
         $this->getView()->registerJs($js, \yii\web\View::POS_END);
     }
