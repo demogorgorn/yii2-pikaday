@@ -12,7 +12,7 @@ class PikadayAsset extends AssetBundle
 {
     public $sourcePath = '@bower/pikaday/';
     public $css = ['css/pikaday.css'];
-    public $js = ['pikaday.js','plugins/pikaday.jquery.js'];
+    public $js = ['pikaday.js'/*,'plugins/pikaday.jquery.js'*/];
     public $depends = [
         'demogorgorn\pikaday\MomentAsset',
     ];

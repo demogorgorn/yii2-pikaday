@@ -11,6 +11,8 @@ namespace demogorgorn\pikaday;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use yii\web\JsExpression;
+use yii\base\InvalidConfigException;
 
 class Pikaday extends \yii\widgets\InputWidget
 {
@@ -26,6 +28,9 @@ class Pikaday extends \yii\widgets\InputWidget
     public function init()
     {
         parent::init();
+
+        if ($this->varName == null)
+            throw new InvalidConfigException("Option 'varName' can't be empty!");
 
         if (!isset($this->options['id'])) 
             $this->options['id'] = $this->getId();
@@ -45,7 +50,6 @@ class Pikaday extends \yii\widgets\InputWidget
         } else {
             echo Html::textInput($this->name, $this->value, $this->options);
         }
-
     }
 
     /**
@@ -56,12 +60,14 @@ class Pikaday extends \yii\widgets\InputWidget
         $view = $this->getView();
         PikadayAsset::register($view);
 
+        if (!isset($this->clientOptions['field']))
+        	$this->clientOptions['field'] = new JsExpression("document.getElementById('" . $this->options['id'] . "')");
+
         $options= Json::encode($this->clientOptions, JSON_NUMERIC_CHECK);
 
-        $js = "$('#{$this->options['id']}').pikaday({$options});";
+        //$js = "$('#{$this->options['id']}').pikaday({$options});";
 
-        if ($this->varName != null)
-            $js = $this->varName . ' = ' . $js;
+        $js = 'var ' . $this->varName . " = new Pikaday({$options})";
         
         $this->getView()->registerJs($js, \yii\web\View::POS_END);
     }
